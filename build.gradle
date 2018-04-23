@@ -1,5 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
 ext {
     versions = [
 
@@ -19,6 +23,16 @@ ext {
 
             // libraries
             'kotlin' : '1.2.30'
+    ]
+
+    api = [
+            'baseUri' : '"api.openweathermap.org/data/"',
+            'version' : '"2.5"'
+    ]
+
+    apiKeys = [
+            'openWeatherMapDev' : properties.getProperty('openWeatherMapApiKey'),
+            'openWeatherMapProd' : properties.getProperty('openWeatherMapApiKey')
     ]
 }
 

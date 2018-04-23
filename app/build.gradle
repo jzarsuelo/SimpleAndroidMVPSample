@@ -37,9 +37,15 @@ android {
         dev {
             applicationIdSuffix '.dev'
             dimension 'default'
+            buildConfigField 'String', 'api', "\"$apiKeys.openWeatherMapDev\""
+            buildConfigField 'String', 'apiBaseUri', api.baseUri
+            buildConfigField 'String', 'apiVersion', api.version
         }
         prod {
             dimension 'default'
+            buildConfigField 'String', 'api', "\"$apiKeys.openWeatherMapProd\""
+            buildConfigField 'String', 'apiBaseUri', api.baseUri
+            buildConfigField 'String', 'apiVersion', api.version
         }
     }
 }
