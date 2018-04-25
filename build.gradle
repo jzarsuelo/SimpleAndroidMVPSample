@@ -22,11 +22,13 @@ ext {
             'espresso' : '3.0.1',
 
             // libraries
-            'kotlin' : '1.2.30'
+            'kotlin' : '1.2.30',
+            'retrofit' : '2.4.0',
+            'okhttp' : '3.10.0'
     ]
 
     api = [
-            'baseUri' : '"api.openweathermap.org/data/"',
+            'baseUri' : '"https://api.openweathermap.org/data/"',
             'version' : '"2.5"'
     ]
 
