@@ -1,7 +1,6 @@
 package com.jzarsuelo.android.sunshine.view.main
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,29 +11,88 @@ import com.bumptech.glide.request.RequestOptions
 import com.jzarsuelo.android.sunshine.R
 import com.jzarsuelo.android.sunshine.data.Forecast
 import com.jzarsuelo.android.sunshine.utils.GlideApp
+import com.jzarsuelo.android.sunshine.utils.getBigIcon
 import com.jzarsuelo.android.sunshine.utils.getFormattedDate
 import com.jzarsuelo.android.sunshine.utils.getIcon
 import java.util.*
 
 
-class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
+class ForecastAdapter(private val city: String, private val country: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var data : List<Forecast> = ArrayList<Forecast>()
+    private var data : List<Forecast> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastAdapter.ViewHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_forecast, parent, false)
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val view =  LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        return when (viewType) {
+            R.layout.item_today_forecast -> TodayViewHolder(view)
+            else -> ViewHolder(view)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int = when(position) {
+        0 -> R.layout.item_today_forecast
+        else -> R.layout.item_forecast
     }
 
     override fun getItemCount(): Int = data.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(data[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is TodayViewHolder)
+            holder.bind(data[position], city, country)
+        else if (holder is ViewHolder){
+            holder.bind(data[position], position)
+        }
     }
 
     fun add(data: List<Forecast>) {
         this.data = data
         notifyDataSetChanged()
+    }
+
+    class TodayViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+
+        private var todayForecastImageView: ImageView? = null
+        private var todayTextView: TextView? = null
+        private var todayForecastTextView: TextView? = null
+        private var todayMaxTempTextView: TextView? = null
+        private var todayMinTempTextView: TextView? = null
+        private var locationTextView: TextView? = null
+        private var context: Context? = null
+
+        init {
+            todayForecastImageView = v.findViewById(R.id.todayForecastImageView)
+            todayTextView = v.findViewById(R.id.todayTextView)
+            todayForecastTextView = v.findViewById(R.id.todayForecastTextView)
+            todayMaxTempTextView = v.findViewById(R.id.todayMaxTempTextView)
+            todayMinTempTextView = v.findViewById(R.id.todayMinTempTextView)
+            locationTextView = v.findViewById(R.id.locationTextView)
+
+            context = v.context
+        }
+
+        fun bind(forecast: Forecast, city: String, country: String) {
+            context?.let {
+                val icon = forecast.weathers[0].getBigIcon()
+
+                val requestOptions = RequestOptions()
+                        .placeholder(icon)
+
+                GlideApp.with(it)
+                        .load("")
+                        .apply(requestOptions)
+                        .into(todayForecastImageView!!)
+            }
+
+            todayTextView?.text = context?.let {
+                val dateFormat = it.getString(R.string.date_format_month_date)
+                it.getString(R.string.today) + ", " +
+                        forecast.dateTime.getFormattedDate(dateFormat)
+            }
+            todayForecastTextView?.text = forecast.weathers[0].main
+            todayMaxTempTextView?.text = forecast.temperature.max.toInt().toString() + "°C"
+            todayMinTempTextView?.text = forecast.temperature.min.toInt().toString() + "°C"
+            locationTextView?.text = "$city, $country"
+        }
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -56,7 +114,7 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
             context = v.context
         }
 
-        fun bind(forecast: Forecast) {
+        fun bind(forecast: Forecast, position: Int) {
             context?.let {
                 val icon = forecast.weathers[0].getIcon()
 
@@ -69,10 +127,18 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
                         .into(forecastImageView!!)
             }
 
-            dayTextView?.text = forecast.dateTime.getFormattedDate("EEEE")
+            dayTextView?.text = context?.let{
+                when(position){
+                    1 -> it.getString(R.string.tomorrow)
+                    else -> {
+                        val dateFormat = it.getString(R.string.date_fromat_day)
+                        forecast.dateTime.getFormattedDate(dateFormat)
+                    }
+                }
+            }
             forecastTextView?.text = forecast.weathers[0].main
-            maxTempTextView?.text = forecast.temperature.max.toInt().toString() + "°C"
-            minTempTextView?.text = forecast.temperature.min.toInt().toString() + "°C"
+            maxTempTextView?.text = forecast.temperature.max.toInt().toString() + "°"
+            minTempTextView?.text = forecast.temperature.min.toInt().toString() + "°"
         }
     }
 }

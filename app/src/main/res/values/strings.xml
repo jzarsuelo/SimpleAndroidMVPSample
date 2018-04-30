@@ -9,4 +9,11 @@
     <string name="rain">Rain</string>
     <string name="snow">Snow</string>
     <string name="storm">Storm</string>
+
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+
+    <!-- Date Format -->
+    <string name="date_format_month_date">MMM dd</string>
+    <string name="date_fromat_day">EEEE</string>
 </resources>

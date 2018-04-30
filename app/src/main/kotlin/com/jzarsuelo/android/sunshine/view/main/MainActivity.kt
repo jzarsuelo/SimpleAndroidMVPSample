@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override var presenter: MainContract.Presenter = MainPresenter(this, Injection.forecastRepository())
 
-    override fun showData(data: List<Forecast>) {
+    override fun showData(data: List<Forecast>, city: String, country: String) {
 
-        val adapter = ForecastAdapter()
+        val adapter = ForecastAdapter(city, country)
         adapter.add(data)
 
         val linearLayoutManager = LinearLayoutManager(this)

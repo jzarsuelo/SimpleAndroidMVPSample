@@ -12,7 +12,7 @@ class MainPresenter(
     override fun onRequestData() {
         repository.requestData("melbourne", 14, object: ForecastDataSource.ForecastsCallback{
             override fun onSuccess(data: ForecastResponse) {
-                view.showData(data.list)
+                view.showData(data.list, data.city.name, data.city.country)
             }
 
             override fun onFailure(message: String) {

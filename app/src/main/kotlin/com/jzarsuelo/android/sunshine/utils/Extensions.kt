@@ -23,3 +23,20 @@ fun Weather.getIcon() : Int {
         else -> -1
     }
 }
+
+fun Weather.getBigIcon() : Int {
+    return when (this.id) {
+        in 200..232 -> R.drawable.art_storm
+        in 300..321 -> R.drawable.art_light_rain
+        in 500..504,
+        in 520..531 -> R.drawable.art_rain
+        511,
+        in 600..622 -> R.drawable.art_snow
+        in 701..761 -> R.drawable.art_fog
+        761 or 781 -> R.drawable.art_storm
+        800 -> R.drawable.art_clear
+        801 -> R.drawable.art_light_clouds
+        in 802..804 -> R.drawable.art_clouds
+        else -> -1
+    }
+}
