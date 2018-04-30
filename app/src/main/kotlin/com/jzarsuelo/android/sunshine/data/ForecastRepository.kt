@@ -4,8 +4,8 @@ class ForecastRepository(
         private val remoteDataSource: ForecastDataSource
 ) : ForecastDataSource {
 
-    override fun requestData(city: String, callback: ForecastDataSource.ForecastsCallback) {
-        remoteDataSource.requestData(city, callback)
+    override fun requestData(city: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
+        remoteDataSource.requestData(city, days, callback)
     }
 
     companion object {

@@ -10,9 +10,9 @@ class MainPresenter(
 ) : MainContract.Presenter {
 
     override fun onRequestData() {
-        repository.requestData("melbourne", object: ForecastDataSource.ForecastsCallback{
+        repository.requestData("melbourne", 14, object: ForecastDataSource.ForecastsCallback{
             override fun onSuccess(data: ForecastResponse) {
-                view.showData(data.toString())
+                view.showData(data.list)
             }
 
             override fun onFailure(message: String) {

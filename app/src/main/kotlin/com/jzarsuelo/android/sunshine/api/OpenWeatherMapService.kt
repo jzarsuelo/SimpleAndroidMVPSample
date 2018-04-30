@@ -16,8 +16,8 @@ import retrofit2.http.Query
  */
 interface OpenWeatherMapService {
 
-    @GET(ApiEndpoints.FORECAST_5DAY_3HOURS)
-    fun getForecast5days3hours(@Query("q") city: String): Call<ForecastResponse>
+    @GET(ApiEndpoints.FORECAST_DAILY)
+    fun getForecast(@Query("q") city: String, @Query("cnt") days: Int): Call<ForecastResponse>
 
     companion object {
 
@@ -36,6 +36,7 @@ interface OpenWeatherMapService {
                 val request = it.request()
                 val url = request.url().newBuilder()
                         .addQueryParameter("appid", BuildConfig.API_APP_ID)
+                        .addQueryParameter("units", "metric")
                         .build()
                 val newRequest = it.request().newBuilder().url(url).build()
                 it.proceed(newRequest)

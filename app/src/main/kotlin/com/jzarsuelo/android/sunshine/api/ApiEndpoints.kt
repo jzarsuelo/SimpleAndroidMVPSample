@@ -5,6 +5,6 @@ package com.jzarsuelo.android.sunshine.api
  */
 object ApiEndpoints {
 
-    const val FORECAST_5DAY_3HOURS = "forecast/"
+    const val FORECAST_DAILY = "forecast/daily"
 
 }

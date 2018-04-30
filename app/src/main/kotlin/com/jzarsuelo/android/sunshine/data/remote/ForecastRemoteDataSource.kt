@@ -11,8 +11,8 @@ class ForecastRemoteDataSource(
         private val apiService: OpenWeatherMapService
 ) : ForecastDataSource {
 
-    override fun requestData(city: String, callback: ForecastDataSource.ForecastsCallback) {
-        apiService.getForecast5days3hours(city).enqueue(object: Callback<ForecastResponse>{
+    override fun requestData(city: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
+        apiService.getForecast(city, days).enqueue(object: Callback<ForecastResponse>{
 
             override fun onFailure(call: Call<ForecastResponse>?, t: Throwable?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

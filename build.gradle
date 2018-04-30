@@ -13,7 +13,7 @@ ext {
             'targetSdk' : 27,
 
             // android support
-            'appcompat' : '27.1.1',
+            'support' : '27.1.1',
             'constraintLayout' : '1.1.0',
 
             // test
@@ -24,7 +24,8 @@ ext {
             // libraries
             'kotlin' : '1.2.30',
             'retrofit' : '2.4.0',
-            'okhttp' : '3.10.0'
+            'okhttp' : '3.10.0',
+            'glide' : '4.7.1'
     ]
 
     api = [
