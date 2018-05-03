@@ -1,6 +1,7 @@
 package com.jzarsuelo.android.sunshine.view.main
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -37,5 +38,20 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
         progressBar.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
+    }
+
+    override fun showErrorApiKeyNotFound() {
+        Snackbar.make(recyclerView, getString(R.string.error_api_key_not_found),
+                Snackbar.LENGTH_INDEFINITE).show()
+    }
+
+    override fun showErrorCityNotFound() {
+        Snackbar.make(recyclerView, getString(R.string.error_city_not_found),
+                Snackbar.LENGTH_INDEFINITE).show()
+    }
+
+    override fun showErrorNoInternetConnection() {
+        progressBar.visibility = View.GONE
+        noConnectionViewStub.inflate()
     }
 }

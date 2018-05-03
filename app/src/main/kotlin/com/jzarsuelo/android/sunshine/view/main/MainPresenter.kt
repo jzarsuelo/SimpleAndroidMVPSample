@@ -9,14 +9,24 @@ class MainPresenter(
         private val repository: ForecastRepository
 ) : MainContract.Presenter {
 
+    private val NO_OF_DAYS = 14
+
     override fun onRequestData() {
-        repository.requestData("melbourne", 14, object: ForecastDataSource.ForecastsCallback{
-            override fun onSuccess(data: ForecastResponse) {
-                view.showData(data.list, data.city.name, data.city.country)
+        repository.requestData("melbourne", NO_OF_DAYS, object: ForecastDataSource.ForecastsCallback {
+            override fun noInternetConnection() {
+                view.showErrorNoInternetConnection()
             }
 
-            override fun onFailure(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            override fun apiKeyNotFound() {
+                view.showErrorApiKeyNotFound()
+            }
+
+            override fun cityNotFound() {
+                view.showErrorCityNotFound()
+            }
+
+            override fun onSuccess(data: ForecastResponse) {
+                view.showData(data.list, data.city.name, data.city.country)
             }
 
         })

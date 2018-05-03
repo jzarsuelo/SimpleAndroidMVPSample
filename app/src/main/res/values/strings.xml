@@ -10,10 +10,18 @@
     <string name="snow">Snow</string>
     <string name="storm">Storm</string>
 
-    <string name="today">Today</string>
+    <string name="today">Today, %1$s</string>
     <string name="tomorrow">Tomorrow</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="degrees">%1$s°</string>
+    <string name="degree_celcius">%1$s°C</string>
 
     <!-- Date Format -->
     <string name="date_format_month_date">MMM dd</string>
-    <string name="date_fromat_day">EEEE</string>
+    <string name="date_format_day">EEEE</string>
+
+    <!-- Error -->
+    <string name="error_city_not_found">City not found.</string>
+    <string name="error_api_key_not_found">Please check you API key.</string>
+    <string name="error_no_internet_connection">Please check your \n internet connection</string>
 </resources>

@@ -1,29 +1,35 @@
 package com.jzarsuelo.android.sunshine.data.remote
 
+import com.jzarsuelo.android.sunshine.api.ApiCallbackAdapter
 import com.jzarsuelo.android.sunshine.api.OpenWeatherMapService
 import com.jzarsuelo.android.sunshine.data.ForecastDataSource
 import com.jzarsuelo.android.sunshine.data.ForecastResponse
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 
 class ForecastRemoteDataSource(
         private val apiService: OpenWeatherMapService
 ) : ForecastDataSource {
 
     override fun requestData(city: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
-        apiService.getForecast(city, days).enqueue(object: Callback<ForecastResponse>{
-
-            override fun onFailure(call: Call<ForecastResponse>?, t: Throwable?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        apiService.getForecast(city, days).enqueue(object: ApiCallbackAdapter<ForecastResponse>(){
+            override fun unauthenticated(response: Response<*>) {
+                callback.apiKeyNotFound()
             }
 
-            override fun onResponse(call: Call<ForecastResponse>?, response: Response<ForecastResponse>) {
+            override fun clientError(response: Response<*>) {
+                callback.cityNotFound()
+            }
+
+            override fun success(response: Response<ForecastResponse>) {
                 response.body()?.let {
                     callback.onSuccess(it)
                 }
             }
 
+            override fun networkError(e: IOException) {
+                callback.noInternetConnection()
+            }
         })
 
     }

@@ -81,17 +81,17 @@ class ForecastAdapter(private val city: String, private val country: String) : R
                         .load("")
                         .apply(requestOptions)
                         .into(todayForecastImageView!!)
-            }
 
-            todayTextView?.text = context?.let {
                 val dateFormat = it.getString(R.string.date_format_month_date)
-                it.getString(R.string.today) + ", " +
-                        forecast.dateTime.getFormattedDate(dateFormat)
+                todayTextView?.text = it.getString(R.string.today,
+                        forecast.dateTime.getFormattedDate(dateFormat))
+                todayForecastTextView?.text = forecast.weathers[0].main
+                todayMaxTempTextView?.text = it.getString(R.string.degree_celcius,
+                        forecast.temperature.max.toInt().toString())
+                todayMinTempTextView?.text = it.getString(R.string.degree_celcius,
+                        forecast.temperature.min.toInt().toString())
+                locationTextView?.text = "$city, $country"
             }
-            todayForecastTextView?.text = forecast.weathers[0].main
-            todayMaxTempTextView?.text = forecast.temperature.max.toInt().toString() + "°C"
-            todayMinTempTextView?.text = forecast.temperature.min.toInt().toString() + "°C"
-            locationTextView?.text = "$city, $country"
         }
     }
 
@@ -125,20 +125,21 @@ class ForecastAdapter(private val city: String, private val country: String) : R
                         .load("")
                         .apply(requestOptions)
                         .into(forecastImageView!!)
-            }
 
-            dayTextView?.text = context?.let{
-                when(position){
+                dayTextView?.text = when(position){
                     1 -> it.getString(R.string.tomorrow)
                     else -> {
-                        val dateFormat = it.getString(R.string.date_fromat_day)
+                        val dateFormat = it.getString(R.string.date_format_day)
                         forecast.dateTime.getFormattedDate(dateFormat)
                     }
                 }
+
+                forecastTextView?.text = forecast.weathers[0].main
+                maxTempTextView?.text = it.getString(R.string.degrees,
+                        forecast.temperature.max.toInt().toString())
+                minTempTextView?.text = it.getString(R.string.degrees,
+                        forecast.temperature.min.toInt().toString())
             }
-            forecastTextView?.text = forecast.weathers[0].main
-            maxTempTextView?.text = forecast.temperature.max.toInt().toString() + "°"
-            minTempTextView?.text = forecast.temperature.min.toInt().toString() + "°"
         }
     }
 }

@@ -8,5 +8,9 @@ interface BaseCallback<in T> {
 
     fun onSuccess(data: T)
 
-    fun onFailure(message: String)
+    fun apiKeyNotFound()
+
+    fun cityNotFound()
+
+    fun noInternetConnection()
 }

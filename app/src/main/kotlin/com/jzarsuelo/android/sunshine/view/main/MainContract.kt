@@ -8,6 +8,9 @@ interface MainContract {
 
     interface View : BaseView<Presenter> {
         fun showData(data: List<Forecast>, city: String, country: String)
+        fun showErrorApiKeyNotFound()
+        fun showErrorCityNotFound()
+        fun showErrorNoInternetConnection()
     }
 
     interface Presenter : BasePresenter {
