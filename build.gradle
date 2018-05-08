@@ -23,7 +23,7 @@ ext {
             'espresso' : '3.0.1',
 
             // libraries
-            'kotlin' : '1.2.30',
+            'kotlin' : '1.2.41',
             'retrofit' : '2.4.0',
             'okhttp' : '3.10.0',
             'glide' : '4.7.1',
@@ -42,7 +42,7 @@ ext {
 }
 
 buildscript {
-    ext.kotlin_version = '1.2.30'
+    ext.kotlin_version = '1.2.41'
     repositories {
         google()
         jcenter()
