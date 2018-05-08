@@ -60,6 +60,8 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
     implementation "com.android.support:recyclerview-v7:$versions.support"
     implementation "com.android.support:design:$versions.support"
+    implementation "android.arch.persistence.room:runtime:$versions.room"
+    kapt "android.arch.persistence.room:compiler:$versions.room"
 
     // libraries
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
