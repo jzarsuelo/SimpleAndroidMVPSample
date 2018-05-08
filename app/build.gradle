@@ -67,7 +67,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
-    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+    implementation "com.facebook.stetho:stetho:$versions.stetho"
 
     // test
     testImplementation "junit:junit:$versions.junit"
