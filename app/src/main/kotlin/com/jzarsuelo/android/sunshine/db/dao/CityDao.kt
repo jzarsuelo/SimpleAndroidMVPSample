@@ -12,6 +12,9 @@ interface CityDao {
     @Query("SELECT * FROM city LIMIT 1")
     fun query() : CityEntity
 
+    @Query("DELETE FROM city")
+    fun delete()
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(cityEntity: CityEntity)
 
