@@ -3,7 +3,7 @@ package com.jzarsuelo.android.sunshine.app
 import android.arch.persistence.room.Room
 import com.jzarsuelo.android.sunshine.api.OpenWeatherMapService
 import com.jzarsuelo.android.sunshine.data.ForecastRepository
-import com.jzarsuelo.android.sunshine.data.db.AppDatabase
+import com.jzarsuelo.android.sunshine.db.AppDatabase
 import com.jzarsuelo.android.sunshine.data.remote.ForecastRemoteDataSource
 
 /**

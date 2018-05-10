@@ -1,4 +1,4 @@
-package com.jzarsuelo.android.sunshine.data.db
+package com.jzarsuelo.android.sunshine.db.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
