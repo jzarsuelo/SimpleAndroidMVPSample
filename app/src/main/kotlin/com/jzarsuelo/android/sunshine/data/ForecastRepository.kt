@@ -5,11 +5,11 @@ class ForecastRepository(
         private val localDataSource: ForecastDataSource
 ) : ForecastDataSource {
 
-    override fun saveData(forecastResponse: ForecastResponse, callback: ForecastDataSource.ForecastLocalCallback) {
+    override fun saveData(forecastResponse: ForecastResponse, callback: ForecastDataSource.ForecastSaveLocalCallback) {
         localDataSource.saveData(forecastResponse, callback)
     }
 
-    override fun queryData(callback: ForecastDataSource.ForecastLocalCallback) {
+    override fun queryData(callback: ForecastDataSource.ForecastQueryCallback) {
         localDataSource.queryData(callback)
     }
 

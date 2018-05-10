@@ -11,6 +11,7 @@ interface MainContract {
         fun showErrorApiKeyNotFound()
         fun showErrorCityNotFound()
         fun showErrorNoInternetConnection()
+        fun showSnackBarNoInternetConnection()
     }
 
     interface Presenter : BasePresenter {

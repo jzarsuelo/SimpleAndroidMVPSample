@@ -8,6 +8,9 @@ import com.jzarsuelo.android.sunshine.db.entity.WeatherForecast
 @Dao
 abstract class WeatherForecastDao {
 
+    @Query("SELECT * FROM forecast")
+    abstract fun query(): List<WeatherForecast>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertForecast(forecastEntity: ForecastEntity)
 

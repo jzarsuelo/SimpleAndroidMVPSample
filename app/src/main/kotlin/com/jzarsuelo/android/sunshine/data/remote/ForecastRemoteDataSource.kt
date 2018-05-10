@@ -11,11 +11,11 @@ class ForecastRemoteDataSource(
         private val apiService: OpenWeatherMapService
 ) : ForecastDataSource {
 
-    override fun saveData(forecastResponse: ForecastResponse, callback: ForecastDataSource.ForecastLocalCallback) {
+    override fun saveData(forecastResponse: ForecastResponse, callback: ForecastDataSource.ForecastSaveLocalCallback) {
         // Do nothing. This is handled by [ForecastLocalDataSource]
     }
 
-    override fun queryData(callback: ForecastDataSource.ForecastLocalCallback) {
+    override fun queryData(callback: ForecastDataSource.ForecastQueryCallback) {
         // Do nothing. This is handled by [ForecastLocalDataSource]
     }
 

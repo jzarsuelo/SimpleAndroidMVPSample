@@ -54,4 +54,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         progressBar.visibility = View.GONE
         noConnectionViewStub.inflate()
     }
+
+    override fun showSnackBarNoInternetConnection() {
+        Snackbar.make(recyclerView, R.string.error_snackbar_no_internet_connection, Snackbar.LENGTH_INDEFINITE).show()
+    }
 }

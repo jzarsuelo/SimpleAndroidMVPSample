@@ -24,4 +24,5 @@
     <string name="error_city_not_found">City not found.</string>
     <string name="error_api_key_not_found">Please check you API key.</string>
     <string name="error_no_internet_connection">Please check your \n internet connection</string>
+    <string name="error_snackbar_no_internet_connection">Please check your internet connection</string>
 </resources>
