@@ -2,16 +2,17 @@ package com.jzarsuelo.android.sunshine.db.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
+import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.jzarsuelo.android.sunshine.data.City
+import com.jzarsuelo.android.sunshine.db.entity.CityEntity
 
 @Dao
 interface CityDao {
 
     @Query("SELECT * FROM city LIMIT 1")
-    fun getCity() : City
+    fun query() : CityEntity
 
-    @Insert
-    fun insert(city: City)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insert(cityEntity: CityEntity)
 
 }

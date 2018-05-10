@@ -1,8 +1,5 @@
 package com.jzarsuelo.android.sunshine.data
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
-import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -32,11 +29,7 @@ data class Weather(
         val icon: String
 )
 
-@Entity(tableName = "city")
 data class City(
-        @PrimaryKey(autoGenerate = true) val uid: Long,
         val name: String,
         val country: String
-) {
-    @Ignore constructor(name: String, country: String) : this(0, name, country)
-}
+)

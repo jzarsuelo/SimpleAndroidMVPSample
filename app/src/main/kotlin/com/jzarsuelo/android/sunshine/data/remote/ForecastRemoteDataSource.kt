@@ -11,6 +11,14 @@ class ForecastRemoteDataSource(
         private val apiService: OpenWeatherMapService
 ) : ForecastDataSource {
 
+    override fun saveData(forecastResponse: ForecastResponse, callback: ForecastDataSource.ForecastLocalCallback) {
+        // Do nothing. This is handled by [ForecastLocalDataSource]
+    }
+
+    override fun queryData(callback: ForecastDataSource.ForecastLocalCallback) {
+        // Do nothing. This is handled by [ForecastLocalDataSource]
+    }
+
     override fun requestData(city: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
         apiService.getForecast(city, days).enqueue(object: ApiCallbackAdapter<ForecastResponse>(){
             override fun unauthenticated(response: Response<*>) {
