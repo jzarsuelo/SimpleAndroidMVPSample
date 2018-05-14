@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion versions.compileSdk
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.jzarsuelo.android.sunshine"
         minSdkVersion versions.minSdk
@@ -27,13 +27,10 @@ android {
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
         }
     }
-
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-
     flavorDimensions 'default'
-
     productFlavors {
         dev {
             applicationIdSuffix '.dev'
@@ -49,11 +46,11 @@ android {
             buildConfigField 'String', 'apiVersion', api.version
         }
     }
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     // android
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
@@ -62,8 +59,9 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$versions.support"
     implementation "com.android.support:design:$versions.support"
     implementation "android.arch.persistence.room:runtime:$versions.room"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:support-v4:27.1.1'
     kapt "android.arch.persistence.room:compiler:$versions.room"
-
     // libraries
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
@@ -71,7 +69,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
     implementation "com.facebook.stetho:stetho:$versions.stetho"
-
     // test
     testImplementation "junit:junit:$versions.junit"
     androidTestImplementation "com.android.support.test:runner:$versions.runner"

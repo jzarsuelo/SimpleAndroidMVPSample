@@ -1,13 +1,17 @@
 package com.jzarsuelo.android.sunshine.view.main
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.jzarsuelo.android.sunshine.R
 import com.jzarsuelo.android.sunshine.app.Injection
 import com.jzarsuelo.android.sunshine.data.Forecast
+import com.jzarsuelo.android.sunshine.view.setting.SettingActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_main.*
 
@@ -16,6 +20,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
 
         setSupportActionBar(mainToolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -26,6 +32,18 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override var presenter: MainContract.Presenter = MainPresenter(this, Injection.forecastRepository())
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.setting -> startActivity( SettingActivity.newIntent(this) )
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun showData(data: List<Forecast>, city: String, country: String) {
 
