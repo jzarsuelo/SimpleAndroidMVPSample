@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference
-        android:defaultValue="@string/pref_default_city"
-        android:key="@string/pref_city"
-        android:title="@string/city"/>
+    <com.jzarsuelo.android.sunshine.view.SunshineEditTextPreference
+        android:key="@string/pref_key_city"
+        android:title="@string/pref_title_city"
+        android:dialogTitle="@string/pref_dialog_title_city"
+        android:defaultValue="@string/pref_default_city"/>
+
+    <com.jzarsuelo.android.sunshine.view.SunshineListPreference
+        android:key="@string/pref_key_unit"
+        android:title="@string/pref_title_unit"
+        android:dialogTitle="@string/pref_dialog_title_unit"
+        android:defaultValue="@string/pref_entry_unit_metric_value"
+        android:entries="@array/pref_unit_entries"
+        android:entryValues="@array/pref_unit_values"/>
 </PreferenceScreen>

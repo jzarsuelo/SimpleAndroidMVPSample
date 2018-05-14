@@ -11,7 +11,6 @@
     <string name="storm">Storm</string>
     <string name="title_activity_setting">SettingActivity</string>
     <string name="settings">Settings</string>
-    <string name="city">City</string>
     <string name="unit">"Unit</string>
 
     <string name="today">Today, %1$s</string>
@@ -31,11 +30,18 @@
     <string name="error_snackbar_no_internet_connection">Please check your internet connection</string>
 
     <!-- Preferences Key -->
-    <string name="pref_city">city</string>
+    <string name="pref_title_city">City</string>
+    <string name="pref_dialog_title_city">Please enter the City</string>
+    <string name="pref_key_city">city</string>
     <string name="pref_default_city">Melbourne</string>
-    <string name="pref_unit">unit</string>
-    <string name="pref_default_unit">metric</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pref_title_unit">Unit</string>
+    <string name="pref_dialog_title_unit">Please select a unit</string>
+    <string name="pref_key_unit">unit</string>
+    <string name="pref_default_unit">metric</string>
+    <string name="pref_entry_unit_imperial">Fahrenheit</string>
+    <string name="pref_entry_unit_metric">Celcius</string>
+    <string name="pref_entry_unit_imperial_value">imperial</string>
+    <string name="pref_entry_unit_metric_value">metric</string>
+
 </resources>
