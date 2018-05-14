@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.jzarsuelo.android.sunshine"
         minSdkVersion versions.minSdk
@@ -69,6 +69,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
     implementation "com.facebook.stetho:stetho:$versions.stetho"
+    implementation "com.chibatching.kotpref:kotpref:$versions.kotpref"
     // test
     testImplementation "junit:junit:$versions.junit"
     androidTestImplementation "com.android.support.test:runner:$versions.runner"

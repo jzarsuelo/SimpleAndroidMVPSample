@@ -27,7 +27,8 @@ ext {
             'retrofit' : '2.4.0',
             'okhttp' : '3.10.0',
             'glide' : '4.7.1',
-            'stetho' : '1.5.0'
+            'stetho' : '1.5.0',
+            'kotpref' : '2.5.0'
     ]
 
     api = [

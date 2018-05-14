@@ -29,19 +29,21 @@
     <string name="error_no_internet_connection">Please check your \n internet connection</string>
     <string name="error_snackbar_no_internet_connection">Please check your internet connection</string>
 
-    <!-- Preferences Key -->
-    <string name="pref_title_city">City</string>
-    <string name="pref_dialog_title_city">Please enter the City</string>
-    <string name="pref_key_city">city</string>
-    <string name="pref_default_city">Melbourne</string>
+    <!-- Preferences Key - See [Preferences] -->
+        <!-- City -->
+        <string name="pref_title_city">City</string>
+        <string name="pref_dialog_title_city">Please enter the City</string>
+        <string name="pref_key_city">city</string>
+        <string name="pref_default_city">Melbourne</string>
 
-    <string name="pref_title_unit">Unit</string>
-    <string name="pref_dialog_title_unit">Please select a unit</string>
-    <string name="pref_key_unit">unit</string>
-    <string name="pref_default_unit">metric</string>
-    <string name="pref_entry_unit_imperial">Fahrenheit</string>
-    <string name="pref_entry_unit_metric">Celcius</string>
-    <string name="pref_entry_unit_imperial_value">imperial</string>
-    <string name="pref_entry_unit_metric_value">metric</string>
+        <!-- Unit -->
+        <string name="pref_title_unit">Unit</string>
+        <string name="pref_dialog_title_unit">Please select a unit</string>
+        <string name="pref_key_unit">unit</string>
+        <string name="pref_default_unit">metric</string>
+        <string name="pref_entry_unit_imperial">Fahrenheit</string>
+        <string name="pref_entry_unit_metric">Celcius</string>
+        <string name="pref_entry_unit_imperial_value">imperial</string>
+        <string name="pref_entry_unit_metric_value">metric</string>
 
 </resources>
