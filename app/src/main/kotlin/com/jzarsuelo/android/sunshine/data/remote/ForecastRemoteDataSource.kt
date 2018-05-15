@@ -19,8 +19,8 @@ class ForecastRemoteDataSource(
         // Do nothing. This is handled by [ForecastLocalDataSource]
     }
 
-    override fun requestData(city: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
-        apiService.getForecast(city, days).enqueue(object: ApiCallbackAdapter<ForecastResponse>(){
+    override fun requestData(city: String, unit: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
+        apiService.getForecast(city, unit, days).enqueue(object: ApiCallbackAdapter<ForecastResponse>(){
             override fun unauthenticated(response: Response<*>) {
                 callback.apiKeyNotFound()
             }

@@ -13,7 +13,7 @@ class ForecastLocalDataSource(
         private val appExecutors: AppExecutors
 ) : ForecastDataSource {
 
-    override fun requestData(city: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
+    override fun requestData(city: String, unit: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
         // Do nothing. This is handled by [ForecastRemoteDataSource]
     }
 

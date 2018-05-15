@@ -28,10 +28,16 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         supportActionBar?.title = ""
         supportActionBar?.setLogo(R.drawable.ic_logo)
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
         presenter.onRequestData()
     }
 
-    override var presenter: MainContract.Presenter = MainPresenter(this, Injection.forecastRepository())
+    override var presenter: MainContract.Presenter = MainPresenter(this,
+            Injection.forecastRepository(), Injection.preferenceRepository())
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -45,9 +51,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun showData(data: List<Forecast>, city: String, country: String) {
+    override fun showData(data: List<Forecast>, city: String, country: String, unit: String) {
+        noConnectionViewStub.visibility = View.GONE
 
-        val adapter = ForecastAdapter(city, country)
+        val adapter = ForecastAdapter(city, country, unit)
         adapter.add(data)
 
         val linearLayoutManager = LinearLayoutManager(this)
@@ -74,6 +81,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun showSnackBarNoInternetConnection() {
-        Snackbar.make(recyclerView, R.string.error_snackbar_no_internet_connection, Snackbar.LENGTH_INDEFINITE).show()
+        Snackbar.make(recyclerView, R.string.error_snackbar_no_internet_connection, Snackbar.LENGTH_LONG).show()
     }
 }

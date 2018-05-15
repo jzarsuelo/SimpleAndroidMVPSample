@@ -17,7 +17,11 @@ import com.jzarsuelo.android.sunshine.utils.getIcon
 import java.util.*
 
 
-class ForecastAdapter(private val city: String, private val country: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ForecastAdapter(
+        private val city: String,
+        private val country: String,
+        private val unit: String
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var data : List<Forecast> = ArrayList()
 
@@ -38,7 +42,7 @@ class ForecastAdapter(private val city: String, private val country: String) : R
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is TodayViewHolder)
-            holder.bind(data[position], city, country)
+            holder.bind(data[position], city, country, unit)
         else if (holder is ViewHolder){
             holder.bind(data[position], position)
         }
@@ -70,7 +74,7 @@ class ForecastAdapter(private val city: String, private val country: String) : R
             context = v.context
         }
 
-        fun bind(forecast: Forecast, city: String, country: String) {
+        fun bind(forecast: Forecast, city: String, country: String, unit: String) {
             context?.let {
                 val icon = forecast.weathers[0].getBigIcon()
 
@@ -86,9 +90,16 @@ class ForecastAdapter(private val city: String, private val country: String) : R
                 todayTextView?.text = it.getString(R.string.today,
                         forecast.dateTime.getFormattedDate(dateFormat))
                 todayForecastTextView?.text = forecast.weathers[0].main
-                todayMaxTempTextView?.text = it.getString(R.string.degree_celcius,
+
+                val degreeString = when (unit) {
+                    it.getString(R.string.pref_entry_unit_metric_value) -> R.string.degree_celcius
+                    it.getString(R.string.pref_entry_unit_imperial_value) -> R.string.degree_farenheit
+                    else -> R.string.degree_na
+                }
+
+                todayMaxTempTextView?.text = it.getString(degreeString,
                         forecast.temperature.max.toInt().toString())
-                todayMinTempTextView?.text = it.getString(R.string.degree_celcius,
+                todayMinTempTextView?.text = it.getString(degreeString,
                         forecast.temperature.min.toInt().toString())
                 locationTextView?.text = "$city, $country"
             }

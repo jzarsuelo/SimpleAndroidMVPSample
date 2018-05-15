@@ -18,6 +18,8 @@
     <string name="dismiss">Dismiss</string>
     <string name="degrees">%1$s°</string>
     <string name="degree_celcius">%1$s°C</string>
+    <string name="degree_farenheit">%1$s°F</string>
+    <string name="degree_na">%1$s°</string>
 
     <!-- Date Format -->
     <string name="date_format_month_date">MMM dd</string>

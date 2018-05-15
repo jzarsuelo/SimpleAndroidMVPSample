@@ -3,10 +3,12 @@ package com.jzarsuelo.android.sunshine.ui.main
 import com.jzarsuelo.android.sunshine.data.ForecastDataSource
 import com.jzarsuelo.android.sunshine.data.ForecastRepository
 import com.jzarsuelo.android.sunshine.data.ForecastResponse
+import com.jzarsuelo.android.sunshine.data.PreferenceRepository
 
 class MainPresenter(
         private val view: MainContract.View,
-        private val repository: ForecastRepository
+        private val forecastRepository: ForecastRepository,
+        private val preferenceRepository: PreferenceRepository
 ) : MainContract.Presenter {
 
     private val NO_OF_DAYS = 14
@@ -23,7 +25,7 @@ class MainPresenter(
 
     private val retrieveLocalCallback = object: ForecastDataSource.ForecastQueryCallback {
         override fun onSuccess(data: ForecastResponse) {
-            view.showData(data.list, data.city.name, data.city.country)
+            view.showData(data.list, data.city.name, data.city.country, preferenceRepository.unit)
             view.showSnackBarNoInternetConnection()
         }
 
@@ -33,25 +35,30 @@ class MainPresenter(
     }
 
     override fun onRequestData() {
-        repository.requestData("melbourne", NO_OF_DAYS, object: ForecastDataSource.ForecastsCallback {
-            override fun noInternetConnection() {
-                repository.queryData(retrieveLocalCallback)
-            }
+        forecastRepository.requestData(
+                preferenceRepository.city,
+                preferenceRepository.unit,
+                NO_OF_DAYS,
+                object: ForecastDataSource.ForecastsCallback {
+                    override fun noInternetConnection() {
+                        forecastRepository.queryData(retrieveLocalCallback)
+                    }
 
-            override fun apiKeyNotFound() {
-                view.showErrorApiKeyNotFound()
-            }
+                    override fun apiKeyNotFound() {
+                        view.showErrorApiKeyNotFound()
+                    }
 
-            override fun cityNotFound() {
-                view.showErrorCityNotFound()
-            }
+                    override fun cityNotFound() {
+                        view.showErrorCityNotFound()
+                    }
 
-            override fun onSuccess(data: ForecastResponse) {
-                view.showData(data.list, data.city.name, data.city.country)
-                repository.saveData(data, saveLocalCallback)
-            }
+                    override fun onSuccess(data: ForecastResponse) {
+                        view.showData(data.list, data.city.name, data.city.country, preferenceRepository.unit)
+                        forecastRepository.saveData(data, saveLocalCallback)
+                    }
 
-        })
+                }
+        )
     }
 
     override fun onStart() {

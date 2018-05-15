@@ -6,7 +6,7 @@ interface ForecastDataSource {
     interface ForecastSaveLocalCallback : BaseLocalCallback<Unit>
     interface ForecastQueryCallback : BaseLocalCallback<ForecastResponse>
 
-    fun requestData(city: String, days: Int, callback: ForecastsCallback)
+    fun requestData(city: String, unit: String, days: Int, callback: ForecastsCallback)
     fun saveData(forecastResponse: ForecastResponse, callback: ForecastSaveLocalCallback)
     fun queryData(callback: ForecastQueryCallback)
 }

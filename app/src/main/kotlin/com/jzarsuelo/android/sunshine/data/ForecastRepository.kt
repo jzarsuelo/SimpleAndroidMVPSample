@@ -13,8 +13,8 @@ class ForecastRepository(
         localDataSource.queryData(callback)
     }
 
-    override fun requestData(city: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
-        remoteDataSource.requestData(city, days, callback)
+    override fun requestData(city: String, unit: String, days: Int, callback: ForecastDataSource.ForecastsCallback) {
+        remoteDataSource.requestData(city, unit, days, callback)
     }
 
     companion object {
